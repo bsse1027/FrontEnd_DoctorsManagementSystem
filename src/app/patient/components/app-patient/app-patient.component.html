@@ -1,0 +1,82 @@
+<div fxLayout='column' fxLayoutAlign='center start' fxLayoutGap="24px" class='mx-40 mt-20'>
+    <div>
+        <div fxLayout="row" fxLayoutAlign="center center" class="font-size-32 pt-24">
+            Patient's List
+        </div>
+    </div>
+    <div fxLayout='row' fxLayoutAlign='space-between start' fxLayoutGap="16px" class='w-100-p'>
+        <div class='w-100-p'>
+            <mat-form-field appearance="outline">
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                <mat-icon matPrefix class='mr-16'>search</mat-icon>
+            </mat-form-field>
+        </div>
+
+        <div style="padding-top: 4px;">
+            <button mat-raised-button color="warn" type="button" class='h-60 w-224 font-size-16'
+                (click)="openAddPatientModal()">
+                Add Patient
+            </button>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+<div fxLayout="column" class="mx-40 mb-40 mat-elevation-z8">
+    <mat-table #table [dataSource]="listData" [class.isMobile]="isMobile">
+
+
+
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef class="primary-background white-color-foreground font-size-16"> Name
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element" (click)="openPatientModal(element)"> {{element.name}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="phone">
+            <mat-header-cell *matHeaderCellDef class="primary-background white-color-foreground font-size-16">
+                Phone </mat-header-cell>
+            <mat-cell *matCellDef="let element" (click)="openPatientModal(element)"> {{element.phone}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="address">
+            <mat-header-cell *matHeaderCellDef class="primary-background white-color-foreground font-size-16">
+                Address </mat-header-cell>
+            <mat-cell *matCellDef="let element" (click)="openPatientModal(element)"> {{element.address}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="diagnosis">
+            <mat-header-cell *matHeaderCellDef class="primary-background white-color-foreground font-size-16">
+                Diagnosis </mat-header-cell>
+            <mat-cell *matCellDef="let element" (click)="openPatientModal(element)"> {{element.diagnosis}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="therapy">
+            <mat-header-cell *matHeaderCellDef class="primary-background white-color-foreground font-size-16" >
+                Therapy </mat-header-cell>
+            <mat-cell *matCellDef="let element" (click)="openPatientModal(element)" > {{element.therapy}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="star" stickyEnd>
+            <mat-header-cell *matHeaderCellDef class="primary-background white-color-foreground font-size-16">
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element"  >
+                <button (click)='openPatientDeleteModal(element)' mat-icon-button >
+                    <mat-icon>delete_outline</mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+        <mat-row style="cursor: pointer;" *matRowDef="let row; columns: displayedColumns;" >
+        </mat-row>
+
+
+    </mat-table>
+
+    <div class='p-16' *ngIf="this.listData.filteredData.length == 0">No Data Found</div>
+</div>

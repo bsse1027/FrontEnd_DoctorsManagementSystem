@@ -1,0 +1,64 @@
+table {
+    width: 100%;
+}
+
+.row-common{
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+
+.mat-column-name {
+    flex: 0 0 18% !important;
+    width: 18% !important;
+    @extend .row-common;
+    
+}
+
+.mat-column-phone {
+    flex: 0 0 18% !important;
+    width: 18% !important;
+    @extend .row-common;
+}
+
+.mat-column-address {
+    @extend .row-common;
+
+    flex: 0 0 18% !important;
+    width: 18% !important;
+  
+}
+
+.mat-column-diagnosis {
+    @extend .row-common;
+   
+    flex: 0 0 18% !important;
+    width: 18% !important;
+ 
+}
+
+.mat-column-therapy {
+    @extend .row-common;
+
+    flex: 0 0 18% !important;
+    width: 18% !important;
+    
+}
+
+.mat-column-star {
+    @extend .row-common;
+
+    flex: 0 0 10% !important;
+    width: 10% !important;
+    flex-direction: row;
+    justify-content: flex-end;
+   
+}

@@ -1,0 +1,21 @@
+<div mat-dialog-title>
+    <div class='font-size-30'>{{data.title}}</div>
+</div>
+<mat-divider></mat-divider>
+<div mat-dialog-content>
+
+    <div class='font-size-20 py-16'>
+        {{data.message}}
+    </div>
+    <mat-form-field *ngIf="data.input">
+        <input matInput [(ngModel)]="input">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions class='w-100-p'>
+    <div fxLayout="row" fxLayoutAlign='space-between center' class='w-100-p py-16'>
+        <button mat-stroked-button color='warn' (click)="onNoClick()" class='w-200'>{{data.buttons[0]}}</button>
+        <button mat-raised-button color='primary' class='w-200' [mat-dialog-close]="data.input?input:ok"
+            cdkFocusInitial>{{data.buttons[1]}}</button>
+    </div>
+
+</div>

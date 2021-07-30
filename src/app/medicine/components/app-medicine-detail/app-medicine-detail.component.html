@@ -1,0 +1,129 @@
+
+<div>
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="12px" class="margin-auto ">
+        <div>
+            <mat-progress-bar *ngIf="isLoading" fxLayout="row" fxLayoutAlign="center center" mode="indeterminate"
+                color='primary' class="m-0"></mat-progress-bar>
+        </div>
+        <div class="p-16 ">
+<!-- 
+            <div fxLayout="column" fxLayoutAlign="center start" fxLayoutGap="16px" class='pb-24 '>
+                <div class='font-weight-950 font-size-24'>Add Medicine</div>
+                <mat-divider class='w-100-p'></mat-divider>
+            </div> -->
+            <div fxLayout='row' fxLayoutAlign='space-between start'>
+
+                <div fxLayout="column" fxLayoutAlign="center start" fxLayoutGap="16px" class='pb-24 '>
+                    <div class='font-weight-950 font-size-24'>Add Medicine</div>
+                </div>
+                    <mat-icon class='cursor-pointer' (click)="closeDialog()">close</mat-icon>
+            </div>
+            <mat-divider class='w-100-p pb-16'></mat-divider>
+
+
+            <form [formGroup]="medicineForm">
+                <div fxLayout="column" fxLayout.lt-md='column' fxLayoutAlign="center start"
+                    fxLayoutAlign.lt-md="start center" fxLayoutGap="16px" fxLayoutGap.lt-md='16px'>
+
+
+
+                    <div fxLayout="row" fxLayout.lt-md='column' fxLayoutGap="32px" fxLayoutGap.lt-md='16px'>
+                        <!--Medicine Name -->
+
+                        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="12px">
+                            <div fxLayout="column" fxLayoutAlign="center" class="mat-icon-for-input">
+                                <i class="material-icons-outlined">
+                                    smartphone
+                                </i>
+                            </div>
+                            <div>
+                                <mat-form-field appearance="outline" class='w-224' >
+                                    <mat-label>Medicine Name</mat-label>
+                                    <input  type="text" matInput placeholder="Type in name"
+                                        formControlName="name">
+                                   
+                                    <mat-error
+                                        *ngIf="medicineForm.get('name').touched && medicineForm.get('name').hasError('required')">
+                                        {{error_messages.required_field}}</mat-error>
+
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <!-- Indication -->
+
+                        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="12px">
+                            <div fxLayout="column" fxLayoutAlign="center" class="mat-icon-for-input">
+                                <i class="material-icons-outlined">
+                                    person
+                                </i>
+                            </div>
+                            <div>
+                                <mat-form-field appearance="outline" class='w-224'>
+                                    <mat-label>Indication</mat-label>
+                                    <input type="text" matInput placeholder="Type in indication"
+                                        formControlName="indication">
+                                   
+                                    <mat-error
+                                        *ngIf="medicineForm.get('indication').touched && medicineForm.get('indication').hasError('required')">
+                                        {{error_messages.required_field}}</mat-error>
+
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div fxLayout="row" fxLayout.lt-md='column' fxLayoutGap="32px" fxLayoutGap.lt-md='16px'>
+                        <!-- Usage -->
+
+                        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="12px">
+                            <div fxLayout="column" fxLayoutAlign="center" class="mat-icon-for-input">
+                                <i class="material-icons-outlined">
+                                    local_hospital
+                                </i>
+                            </div>
+                            <div>
+                                <mat-form-field appearance="outline" class='w-224'>
+                                    <mat-label>Usage</mat-label>
+                                    <input type="text" matInput placeholder="Type in usage"
+                                        formControlName="usage">
+                                    
+                                    <mat-error
+                                        *ngIf="medicineForm.get('usage').touched && medicineForm.get('usage').hasError('required')">
+                                        {{error_messages.required_field}}</mat-error>
+
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <!-- Instruction -->
+
+                        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="12px">
+                            <div fxLayout="column" fxLayoutAlign="center" class="mat-icon-for-input">
+                                <i class="material-icons-outlined">
+                                    work_outline
+                                </i>
+                            </div>
+                            <div>
+                                <mat-form-field appearance="outline" class='w-224'>
+                                    <mat-label>Instruction</mat-label>
+                                    <input type="text" matInput placeholder="Type in instruction"
+                                        formControlName="instruction">
+                                   
+                                    <mat-error
+                                        *ngIf="medicineForm.get('instruction').touched && medicineForm.get('instruction').hasError('required')">
+                                        {{error_messages.required_field}}</mat-error>
+
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div fxLayout="column" fxLayoutAlign="center end" fxLayoutGap="16px" class='mt-24'>
+                <button type="submit" (click)='addMedicine()' mat-raised-button color="primary"
+                    class="w-240 h-40">Add</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,224 @@
+<!-- Post Information Form -->
+
+<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="12px" class="margin-auto py-36">
+    <div>
+        <mat-progress-bar *ngIf="isSignUpLoading" fxLayout="row" fxLayoutAlign="center center" mode="indeterminate"
+            color='primary' class="m-0"></mat-progress-bar>
+    </div>
+    <mat-card class="p-36 " [class.mat-elevation-z4]="true">
+
+        <div fxLayout="column" fxLayoutAlign="center start" fxLayoutGap="16px" class='pb-24 '>
+            <div class='font-weight-950 font-size-24'>Patient Information</div>
+            <mat-divider [inset]="true" class='pr-128'></mat-divider>
+        </div>
+        <form [formGroup]="patientForm">
+            <div fxLayout="row" fxLayout.lt-md='column' fxLayoutAlign="center start" fxLayoutAlign.lt-md="start center"
+                fxLayoutGap="32px" fxLayoutGap.lt-md='12px'>
+
+                <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="12px">
+                    <!-- Name -->
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="12px">
+                        <div fxLayout="column" fxLayoutAlign="center" class="mat-icon-for-input">
+                            <i class="material-icons-outlined">
+                                perm_identity
+                            </i>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="outline" class='w-224'>
+                                <mat-label>Name</mat-label>
+                                <input type="text" matInput placeholder="Type in name" formControlName="name">
+                                <mat-error
+                                    *ngIf="patientForm.get('name').touched && patientForm.get('name').hasError('required')">
+                                    {{error_messages.empty_name}}</mat-error>
+
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <!-- Sex -->
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="12px">
+                        <div fxLayout="column" fxLayoutAlign="center" class="mat-icon-for-input">
+                            <i class="material-icons-outlined">
+                                perm_identity
+                            </i>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="outline" class='w-224'>
+                                <mat-label>Sex</mat-label>
+                                <!-- <input type="text" matInput placeholder="Type in name" formControlName="sex">
+                                <mat-error
+                                    *ngIf="patientForm.get('sex').touched && patientForm.get('sex').hasError('required')">
+                                    {{error_messages.empty_name}}</mat-error> -->
+
+                                <mat-select formControlName="sex">
+                                    <mat-option *ngFor="let gender of genders" [value]="gender.value">
+                                        {{gender.viewValue}}
+                                    </mat-option>
+                                </mat-select>
+
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <!-- Phone -->
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="12px">
+                        <div fxLayout="column" fxLayoutAlign="center" class="mat-icon-for-input">
+                            <i class="material-icons-outlined">
+                                perm_identity
+                            </i>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="outline" class='w-224'>
+                                <mat-label>Phone</mat-label>
+                                <input type="text" matInput placeholder="Type in name" formControlName="phone">
+                                <mat-error
+                                    *ngIf="patientForm.get('phone').touched && patientForm.get('phone').hasError('required')">
+                                    {{error_messages.empty_name}}</mat-error>
+
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <!-- clinicalRemarks -->
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="12px">
+                        <div fxLayout="column" fxLayoutAlign="center" class="mat-icon-for-input">
+                            <i class="material-icons-outlined">
+                                account_box
+                            </i>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="outline" class='w-224'>
+                                <mat-label>Medicines</mat-label>
+                                <mat-select [formControl]="currentMedicine" multiple>
+                                    <mat-option *ngFor="let medicine of medicines" [value]="medicine">
+                                        {{medicine.name}}
+                                    </mat-option>
+                                </mat-select>
+
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="12px">
+                    <!-- address -->
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="12px">
+                        <div fxLayout="column" fxLayoutAlign="center" class="mat-icon-for-input">
+                            <i class="material-icons-outlined">
+                                smartphone
+                            </i>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="outline" class='w-224'>
+                                <mat-label>Address</mat-label>
+                                <input type="tel" matInput placeholder="Type in address" formControlName="address">
+
+                                <mat-error
+                                    *ngIf="patientForm.get('address').touched && patientForm.get('address').hasError('required')">
+                                    {{error_messages.username_error}}</mat-error>
+
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <!-- diagnosis -->
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="12px">
+                        <div fxLayout="column" fxLayoutAlign="center" class="mat-icon-for-input">
+                            <i class="material-icons-outlined">
+                                perm_identity
+                            </i>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="outline" class='w-224'>
+                                <mat-label>Diagnosis</mat-label>
+                                <input type="text" matInput placeholder="Type in diagnosis" formControlName="diagnosis">
+                                <mat-error
+                                    *ngIf="patientForm.get('diagnosis').touched && patientForm.get('diagnosis').hasError('required')">
+                                    {{error_messages.empty_name}}</mat-error>
+
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <!-- therapy -->
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="12px">
+                        <div fxLayout="column" fxLayoutAlign="center" class="mat-icon-for-input">
+                            <i class="material-icons-outlined">
+                                perm_identity
+                            </i>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="outline" class='w-224'>
+                                <mat-label>Therapy</mat-label>
+                                <input type="text" matInput placeholder="Type in therapy" formControlName="therapy">
+                                <mat-error
+                                    *ngIf="patientForm.get('therapy').touched && patientForm.get('therapy').hasError('required')">
+                                    {{error_messages.empty_name}}</mat-error>
+
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div fxLayout="column" fxLayoutAlign="center start" fxLayoutGap="16px" class='py-24'>
+                <div class='font-weight-950 font-size-24'>Prescriptions</div>
+                <mat-divider [inset]="true"></mat-divider>
+            </div>
+
+            <div fxLayout="row" fxLayout.lt-md='column' fxLayoutAlign="start center" fxLayoutAlign.lt-md="start center"
+                fxLayoutGap="32px" fxLayoutGap.lt-md='12px' class='w-100-p'>
+                <div fxLayout="column" fxLayoutAlign="center start" fxLayoutGap="12px" class='w-100-p'>
+
+
+                    <div *ngFor='let x of prescriptions;let i = index' class='w-100-p'>
+                        <div *ngIf ="x" fxLayout='row' fxLayoutAlign='space-between center '>
+                            <div fxLayout='row' fxLayoutAlign='center start'>
+                                <div class='pr-8'>{{i+1}}.</div>
+                                <div fxLayout='column' fxLayoutAlign='start start'>
+                                    <div>Name: {{x.name}}</div>
+                                    <div>Indication: {{x.indication}}</div>
+                                    <div>Usage: {{x.usage}}</div>
+                                    <div>Instruction: {{x.instruction}}</div>
+
+
+                                </div>
+
+
+                            </div>
+                            <div>
+                                <button mat-icon-button (click)='delelePrescription(i)'>
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+
+            </div>
+        </form>
+
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="16px" class='mt-24'>
+            <button type="submit" (click)='exportAsPDF()' mat-raised-button color="warn" class="w-240 h-40">
+                Generate PDF
+
+            </button>
+
+            <button type="submit" (click)='addPatient()' mat-raised-button color="primary" class="w-240 h-40">
+                <span *ngIf='!currentPatientId'>Add Patient Information</span>
+                <span *ngIf='currentPatientId'>Update Patient Information</span>
+
+            </button>
+        </div>
+
+    </mat-card>
+
+</div>
